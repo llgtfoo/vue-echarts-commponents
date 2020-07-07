@@ -2,15 +2,20 @@
  * @Descripttion: '模块strore Common'
  * @Author: lilong(lilong@hztianque.com)
  * @Date: 2020-07-06 19:05:23
- * @LastEditTime: 2020-07-06 20:17:00
+ * @LastEditTime: 2020-07-07 23:40:07
  */
 const state = {
-  Str: '前端小丑啊！'
+  Str: '前端小丑啊！',
+  currentMenu: ''
+
 }
 
 const mutations = {
   setStr(state, info) {
     state.Str = state.Str + info
+  },
+  UPDATE_ACTIVE_MENU(state, info) {
+    state.currentMenu = info
   }
 }
 

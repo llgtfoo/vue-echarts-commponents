@@ -1,0 +1,72 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.container .main-layout {
+  width: 100%;
+  height: 100%;
+}
+
+.container .sider-cont {
+  overflow: hidden;
+}
+
+.container .sider-cont .logo-cont {
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.container .sider-bar {
+  width: 200px;
+  height: calc( 100vh - 64px - 48px);
+  overflow-y: auto;
+}
+
+.container .sider-bar .menu-item-span {
+  display: inline-block;
+  overflow: hidden;
+  width: 69px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+  transition: width .2s ease .2s;
+}
+
+.container .sider-bar .ivu-menu-item i {
+  transform: translateX(0px);
+  transition: font-size .2s ease, transform .2s ease;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+.container .sider-bar.collapsed-menu span {
+  width: 0px;
+  transition: width .2s ease;
+}
+
+.container .sider-bar.collapsed-menu i {
+  transform: translateX(-2px);
+  transition: font-size .2s ease .2s, transform .2s ease .2s;
+  vertical-align: middle;
+  font-size: 22px;
+}
+
+.container .right-cont {
+  flex: 1;
+  height: 100%;
+}
+
+.container .right-cont .header-cont {
+  background-color: cornsilk;
+}
+
+.container .right-cont .main-cont {
+  height: calc( 100% - 64px);
+  overflow-y: auto;
+  padding: 20px;
+}
