@@ -1,9 +1,15 @@
+<!--
+ * @Descripttion: ''
+ * @Author: lilong(lilong@hztianque.com)
+ * @Date: 2020-07-06 09:51:34
+ * @LastEditTime: 2020-07-07 17:33:34
+--> 
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <p>{{getToken}}</p>
-    <p>{{getClientInfo}}</p>
+    <p>{{clientInfo}}</p>
     <p><button @click="setStr">点击</button></p>
   </div>
 </template>
@@ -20,8 +26,9 @@ export default {
   computed:{
     ...mapGetters({
       getToken: 'getToken',
-      getClientInfo: 'globe/clientInfo',
+      // clientInfo: 'globe/clientInfo',
     }),
+    ...mapGetters('globe',['clientInfo'])
     // getToken(){
     //   return this.$store.getters.getToken
     // },
