@@ -30,6 +30,7 @@
     "sass-loader": "^8.0.2",
     "view-design": "^4.3.1",
     "vue-cli-plugin-axios": "0.0.4",
+    "vue-seamless-scroll": "^1.1.21",
     "vue-template-compiler": "^2.6.11",
     "vuex-persistedstate": "^3.0.1"
   }

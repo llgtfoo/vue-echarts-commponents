@@ -1,8 +1,8 @@
 <!--
  * @Author: llgtfoo@163.com
  * @Date: 2020-07-07 23:11:53
- * @LastEditTime: 2020-07-08 20:44:15
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-07-08 22:17:06
+ * @LastEditors: user
  * @Description: 
  * @FilePath: \vue-echarts-commponents\src\views\page\bar\index.vue
  -->
@@ -15,6 +15,14 @@
       <box-container class="bg-grey" :spinShow="spinShow1" @showOptionHandler='showOption("bar2")'>
       <bar-box-2 :source="bar2DataList" ref="bar2" />
     </box-container>
+
+     <box-container class="bg-grey" :spinShow="spinShow1" @showOptionHandler='showOption("bar3")'>
+      <bar-box-3 :source="bar3DataList" ref="bar3" />
+    </box-container>
+
+      <box-container class="bg-grey" :spinShow="spinShow1" @showOptionHandler='showOption("bar4")'>
+      <bar-box-4 :source="bar4DataList" ref="bar4" />
+    </box-container>
   </div>
 </template>
 
@@ -23,18 +31,21 @@
 import boxContainer from "../common/box-container";
 import bar1 from "./cell/bar-box-1";
 import bar2 from "./cell/bar-box-2";
-// import bar3 from "./cell/bar-box-3";
-// import bar4 from "./cell/bar-box-4";
+import bar3 from "./cell/bar-box-3";
+import bar4 from "./cell/bar-box-4";
 //json
 import bar1Data from '@/assets/mock/bar/bardata01.json'
 import bar12Data from '@/assets/mock/bar/bardata02.json'
 import bar2Data from '@/assets/mock/bar/bardata03.json'
+import bar3Data from '@/assets/mock/bar/personRangeSource.json'
+import bar4Data from '@/assets/mock/bar/bardata04.json'
 export default {
   components: {
     "box-container": boxContainer,
     "bar-box-1": bar1,
     "bar-box-2": bar2,
-    // "bar-box-3": bar3,
+    "bar-box-3": bar3,
+    "bar-box-4": bar4,
   },
   data() {
     return {
@@ -55,12 +66,14 @@ export default {
         .dispatch("api/fetchData", { name: "llgtfoo" })
         .then(res => {
           console.log(res);
+          this.spinShow1=true
         })
         .catch(err => {
           this.spinShow1=false
           this.bar1DataList=bar1Data
           this.bar2DataList=bar2Data
-          // this.bar3DataList=bar3Data
+          this.bar3DataList=bar3Data
+          this.bar4DataList=bar4Data
           console.log(err);
         });
     },

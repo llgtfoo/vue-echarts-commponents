@@ -1,7 +1,7 @@
 /*
  * @Author: llgtfoo@163.com
  * @Date: 2020-07-07 22:23:47
- * @LastEditTime: 2020-07-07 23:38:03
+ * @LastEditTime: 2020-07-09 00:13:14
  * @LastEditors: user
  * @Description: 
  * @FilePath: \vue-echarts-commponents\src\router\index.js

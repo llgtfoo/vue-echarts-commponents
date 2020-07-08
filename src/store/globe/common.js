@@ -2,7 +2,7 @@
  * @Descripttion: '模块strore Common'
  * @Author: lilong(lilong@hztianque.com)
  * @Date: 2020-07-06 19:05:23
- * @LastEditTime: 2020-07-07 23:40:07
+ * @LastEditTime: 2020-07-08 23:58:44
  */
 const state = {
   Str: '前端小丑啊！',
@@ -29,6 +29,9 @@ const getters = {
   clientInfo(state) {
     return state.Str
   },
+  getActiveMenu(state) {
+    return state.currentMenu
+  }
 }
 
 export default {

@@ -1,7 +1,7 @@
 <!--
  * @Author: lilong
  * @Date: 2020-07-07 20:52:09
- * @LastEditTime: 2020-07-07 23:47:22
+ * @LastEditTime: 2020-07-09 00:12:31
  * @LastEditors: user
  * @Description:
  * @FilePath: \vue-echarts-commponents\src\views\page\home\index.vue
@@ -32,7 +32,7 @@
             <MenuItem
               v-for='menu in menus'
               :key='menu.key'
-              :name='menu.name'>
+              :name='menu.path'>
               <Icon :type='menu.icon' />
               <span class='menu-item-span'>{{menu.title}}</span>
             </MenuItem>
@@ -127,7 +127,7 @@ export default {
   },
   computed: {
     getActiveMenu() {
-      return 'pie'
+      return this.$store.getters['globe/getActiveMenu']
     },
     menuitemClasses() {
       return [
@@ -144,7 +144,7 @@ export default {
   methods: {
     changeMenuHandler(name) {
         console.log(name)
-        this.$router.push(`/home/${name}`)
+        this.$router.push(name)
         this.$store.commit('globe/UPDATE_ACTIVE_MENU', name)
     },
   },

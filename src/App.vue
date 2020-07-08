@@ -1,7 +1,7 @@
 <!--
  * @Author: llgtfoo@163.com
  * @Date: 2020-07-07 22:23:47
- * @LastEditTime: 2020-07-07 23:32:38
+ * @LastEditTime: 2020-07-09 00:00:07
  * @LastEditors: user
  * @Description: 
  * @FilePath: \vue-echarts-commponents\src\App.vue
@@ -19,7 +19,7 @@ export default {
     }
   },
    mounted() {
-    this.$router.push('/home/pie')
+    this.$router.push(this.$store.getters['globe/getActiveMenu'])
   },
 }
 </script>
