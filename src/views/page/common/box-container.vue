@@ -9,7 +9,7 @@
         v-if='toolsShow'
         :class='["tools-cont", isActive ? "active" : ""]'>
         <Button
-          type='ghost'
+          type='default'
           icon='code-working'
           size='small'
           class='tools-btn'
@@ -23,11 +23,11 @@ export default {
     spinShow: {
       require: true,
       type: Boolean,
-      default: () => false,
+      default:false,
     },
     toolsShow: {
       type: Boolean,
-      default: () => true,
+      default:true,
     },
     showOptionHandler: {
       type: Function,
@@ -101,7 +101,7 @@ $showBoxHeight: 300px;
   }
 }
 .tools-btn{
-  color: #fff;
+  // color: #fff;
 
   &:hover{
     color: #57a3f3;
