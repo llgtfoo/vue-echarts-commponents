@@ -2,7 +2,7 @@
  * @Descripttion: ''
  * @Author: lilong(lilong@hztianque.com)
  * @Date: 2020-07-09 15:50:20
- * @LastEditTime: 2020-07-09 23:43:03
+ * @LastEditTime: 2020-07-09 23:45:57
 --> 
 <template>
   <div class="charts-wrapper" ref="bar5" />
@@ -179,9 +179,9 @@ export default {
     },
     autoMove(){
          this.timeOut=setInterval(()=>{
-            // clearInterval(this.timeOut)
+        // clearInterval(this.timeOut)
         // 每次向后滚动一个，最后一个从头开始。
-        if(this.stopMove){ return }
+        // if(this.stopMove){ return }
         if (Number(this.option.dataZoom[0].endValue) === this.dataList.seriesData.length-1) {
              this.option.dataZoom[0].endValue = this.end;
              this.option.dataZoom[0].startValue = 0;
@@ -194,12 +194,12 @@ export default {
     },
     stop(){
       console.log(11)
-      this.stopMove=true
+      // this.stopMove=true
       clearInterval(this.timeOut)
     },
     goMove(){
       console.log(333333)
-       this.stopMove=false
+      //  this.stopMove=false
        this.autoMove()
     }
   }
