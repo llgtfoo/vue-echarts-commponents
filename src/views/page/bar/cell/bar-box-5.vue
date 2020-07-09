@@ -2,7 +2,7 @@
  * @Descripttion: ''
  * @Author: lilong(lilong@hztianque.com)
  * @Date: 2020-07-09 15:50:20
- * @LastEditTime: 2020-07-09 18:04:16
+ * @LastEditTime: 2020-07-09 23:43:03
 --> 
 <template>
   <div class="charts-wrapper" ref="bar5" />
@@ -11,28 +11,10 @@
 // import _lodash_sortBy from 'lodash/sortBy'
 export default {
   props: {
-    chartId: {
-      type: String,
-      default: "horizontal-bar-charts"
-    },
     source: {
       type: Array,
       default: () => []
     },
-    colorDic: {
-      type: Object,
-      default: () => {
-        return {
-          fillColor: [
-            "rgba(164,24,77,0.9)",
-            "rgba(154,53,18,0.9)",
-            "rgba(156,88,14,0.9)",
-            "rgba(49,68,168,0.9)"
-          ],
-          borderColor: ["#d92b75", "#ca5637", "#cb7729", "#425ad8"]
-        };
-      }
-    }
   },
   data() {
     return {
@@ -41,6 +23,7 @@ export default {
       end:0,
       timeOut:null,
       stopMove:false,
+      dataList:{}
     };
   },
   watch: {
@@ -48,12 +31,15 @@ export default {
       if (this.chart === null) {
         this.chart = this.initCharts();
       }
-      this.updateCharts(newSource);
+      // console.log(newSource,'newSource')
+      this.updateCharts(newSource)
     }
   },
   mounted() {
     this.chart = this.initCharts();
+    if(this.source){
     this.updateCharts(this.source);
+    }
   },
   methods: {
     initCharts() {
@@ -61,11 +47,36 @@ export default {
       const charts = this.$echarts.init(el);
       return charts;
     },
-    updateCharts() {
-      const data = [600, 720, 510, 400, 720, 510, 400, 400, 720, 510, 400, 300]
-      const dataX = ['市中区', '任城区', '金乡县', '嘉祥县', '汶上县', '泗水县', '梁山县', '曲阜市', '兖州区', '高新区', '太白新区', '济宁经济技术开发区'];
-      if (dataX.length < 5) {
-        this.end = dataX.length - 1;
+     initData(source) {
+      if (source && Object.prototype.toString.call(source) === '[object Object]') {
+        const _xAxisData = []
+        const _seriesData = []
+        Object.entries(source).forEach(([key, value]) => {
+          _xAxisData.push(key)
+          _seriesData.push(value)
+        })
+        return {
+          xAxis: _xAxisData,
+          seriesData: _seriesData,
+        }
+      } else if (source && Object.prototype.toString.call(source) === '[object Array]') {
+        const _xAxisData = []
+        const _seriesData = []
+        source.forEach(item => {
+          _xAxisData.push(Object.values(item)[0])
+          _seriesData.push(Object.values(item)[1])
+        })
+        return {
+          xAxis: _xAxisData,
+          seriesData: _seriesData,
+        }
+      }
+    },
+    async updateCharts(source) {
+      if(!source||source.length===0) {return }
+     this.dataList= await this.initData(source)
+      if (this.dataList.seriesData.length < 5) {
+        this.end = this.dataList.seriesData.length - 1;
       } else {
         this.end = 4;
       }
@@ -111,7 +122,7 @@ export default {
           axisLine: {
             show: false
           },
-          data: dataX
+          data: this.dataList.xAxis
         },
         yAxis: {
           type: "value",
@@ -138,7 +149,7 @@ export default {
           {
             type: "bar",
             name: "人口",
-            // barWidth: 30,
+            barWidth: 30,
             itemStyle: {
               normal: {
                 color: "#1890FF"
@@ -157,21 +168,21 @@ export default {
                 }
               }
             },
-            data: data
+            data: this.dataList.seriesData
           }
         ]
       }
       this.chart.setOption(this.option)
       this.chart.on('mouseover',this.stop)
       this.chart.on('mouseout',this.goMove)
-      this.autoMove(data)
+      this.autoMove()
     },
-    autoMove(data){
+    autoMove(){
          this.timeOut=setInterval(()=>{
-            clearInterval(this.timeOut)
+            // clearInterval(this.timeOut)
         // 每次向后滚动一个，最后一个从头开始。
         if(this.stopMove){ return }
-        if (this.option.dataZoom[0].endValue === data.length) {
+        if (Number(this.option.dataZoom[0].endValue) === this.dataList.seriesData.length-1) {
              this.option.dataZoom[0].endValue = this.end;
              this.option.dataZoom[0].startValue = 0;
         } else {
@@ -179,7 +190,7 @@ export default {
              this.option.dataZoom[0].startValue =  this.option.dataZoom[0].startValue + 1;
         }
         this.chart.setOption(this.option)
-    }, 3000);
+    }, 2000);
     },
     stop(){
       console.log(11)
