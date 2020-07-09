@@ -1,8 +1,8 @@
 /*
  * @Author: llgtfoo@163.com
  * @Date: 2020-07-07 22:23:47
- * @LastEditTime: 2020-07-09 00:13:14
- * @LastEditors: user
+ * @LastEditTime: 2020-07-09 15:45:38
+ * @LastEditors: Please set LastEditors
  * @Description: 
  * @FilePath: \vue-echarts-commponents\src\router\index.js
  */
@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    redirect: '/home'
+    redirect: '/home/pie'
   },
   {
     path: '/home',

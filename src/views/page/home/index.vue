@@ -1,8 +1,8 @@
 <!--
  * @Author: lilong
  * @Date: 2020-07-07 20:52:09
- * @LastEditTime: 2020-07-09 00:12:31
- * @LastEditors: user
+ * @LastEditTime: 2020-07-09 15:49:35
+ * @LastEditors: Please set LastEditors
  * @Description:
  * @FilePath: \vue-echarts-commponents\src\views\page\home\index.vue
  -->
@@ -127,7 +127,7 @@ export default {
   },
   computed: {
     getActiveMenu() {
-      return this.$store.getters['globe/getActiveMenu']
+      return this.$route.path==='/home/pie'?'/home/pie':this.$store.getters['globe/getActiveMenu']
     },
     menuitemClasses() {
       return [

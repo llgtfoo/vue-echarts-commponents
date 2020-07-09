@@ -1,8 +1,8 @@
 <!--
  * @Author: llgtfoo@163.com
  * @Date: 2020-07-07 22:23:47
- * @LastEditTime: 2020-07-09 00:00:07
- * @LastEditors: user
+ * @LastEditTime: 2020-07-09 15:59:47
+ * @LastEditors: Please set LastEditors
  * @Description: 
  * @FilePath: \vue-echarts-commponents\src\App.vue
  -->
@@ -19,7 +19,9 @@ export default {
     }
   },
    mounted() {
-    this.$router.push(this.$store.getters['globe/getActiveMenu'])
+    //  console.log(this.$route.path)
+    // this.$route.path==='/'?this.$router.push('/home/pie'):
+    // this.$router.push(this.$store.getters['globe/getActiveMenu'])
   },
 }
 </script>
