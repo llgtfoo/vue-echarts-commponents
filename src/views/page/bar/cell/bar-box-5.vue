@@ -2,7 +2,7 @@
  * @Descripttion: ''
  * @Author: lilong(lilong@hztianque.com)
  * @Date: 2020-07-09 15:50:20
- * @LastEditTime: 2020-07-09 17:57:02
+ * @LastEditTime: 2020-07-09 18:04:16
 --> 
 <template>
   <div class="charts-wrapper" ref="bar5" />
@@ -40,6 +40,7 @@ export default {
       option: {},
       end:0,
       timeOut:null,
+      stopMove:false,
     };
   },
   watch: {
@@ -161,13 +162,15 @@ export default {
         ]
       }
       this.chart.setOption(this.option)
-      this.chart.on('mousemove',this.stop)
+      this.chart.on('mouseover',this.stop)
+      this.chart.on('mouseout',this.goMove)
       this.autoMove(data)
     },
     autoMove(data){
          this.timeOut=setInterval(()=>{
             clearInterval(this.timeOut)
         // 每次向后滚动一个，最后一个从头开始。
+        if(this.stopMove){ return }
         if (this.option.dataZoom[0].endValue === data.length) {
              this.option.dataZoom[0].endValue = this.end;
              this.option.dataZoom[0].startValue = 0;
@@ -180,7 +183,13 @@ export default {
     },
     stop(){
       console.log(11)
+      this.stopMove=true
       clearInterval(this.timeOut)
+    },
+    goMove(){
+      console.log(333333)
+       this.stopMove=false
+       this.autoMove()
     }
   }
 };
