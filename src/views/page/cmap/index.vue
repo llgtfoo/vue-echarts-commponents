@@ -1,8 +1,8 @@
 <!--
  * @Author: llgtfoo@163.com
  * @Date: 2020-07-07 23:11:53
- * @LastEditTime: 2020-07-08 23:52:35
- * @LastEditors: user
+ * @LastEditTime: 2020-07-24 16:38:41
+ * @LastEditors: Please set LastEditors
  * @Description: 
  * @FilePath: \vue-echarts-commponents\src\views\page\cmap\index.vue
  -->
@@ -11,7 +11,9 @@
     <box-container class="bg-grey" :spinShow="spinShow1" @showOptionHandler='showOption("cmap1")'>
       <cmap-box-1 :source="cmap1DataList" ref="cmap1"/>
     </box-container>
-    
+    <box-container class="bg-grey" :spinShow="spinShow1" @showOptionHandler='showOption("cmap2")'>
+      <cmap-box-2 :source="cmap2DataList" ref="cmap2"/>
+    </box-container>
   </div>
 </template>
 
@@ -19,17 +21,20 @@
 // components
 import boxContainer from "../common/box-container";
 import cmap1 from "./cell/cmap-box-1";
+import cmap2 from "./cell/cmap-box-2";
 //json
 import cmap1Data from '@/assets/mock/cmap/china.json'
 export default {
   components: {
     "box-container": boxContainer,
     "cmap-box-1": cmap1,
+    "cmap-box-2": cmap2,
   },
   data() {
     return {
       spinShow1: true,
-      cmap1DataList:{}
+      cmap1DataList:{},
+      cmap2DataList:[]
     };
   },
   created(){
