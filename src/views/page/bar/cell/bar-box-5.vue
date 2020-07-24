@@ -2,13 +2,14 @@
  * @Descripttion: ''
  * @Author: lilong(lilong@hztianque.com)
  * @Date: 2020-07-09 15:50:20
- * @LastEditTime: 2020-07-09 23:45:57
+ * @LastEditTime: 2020-07-24 15:39:30
 --> 
 <template>
   <div class="charts-wrapper" ref="bar5" />
 </template>
 <script>
-// import _lodash_sortBy from 'lodash/sortBy'
+// eslint-disable-next-line no-unused-vars
+import doMove from '@/utils/goMove-x.js'
 export default {
   props: {
     source: {
@@ -23,7 +24,8 @@ export default {
       end:0,
       timeOut:null,
       stopMove:false,
-      dataList:{}
+      dataList:{},
+      moveAnimate:null,
     };
   },
   watch: {
@@ -173,35 +175,43 @@ export default {
         ]
       }
       this.chart.setOption(this.option)
-      this.chart.on('mouseover',this.stop)
-      this.chart.on('mouseout',this.goMove)
-      this.autoMove()
+      if(this.moveAnimate){
+        this.moveAnimate.destory()
+        this.moveAnimate=null
+      }else{
+        this.moveAnimate=new doMove(this.chart,this.option,this.end,this.dataList.seriesData.length)
+        this.moveAnimate.autoMove()
+      }
+      // this.chart.on('mouseover',this.stop)
+      // this.chart.on('mouseout',this.goMove)
+      // this.autoMove()
     },
-    autoMove(){
-         this.timeOut=setInterval(()=>{
-        // clearInterval(this.timeOut)
-        // 每次向后滚动一个，最后一个从头开始。
-        // if(this.stopMove){ return }
-        if (Number(this.option.dataZoom[0].endValue) === this.dataList.seriesData.length-1) {
-             this.option.dataZoom[0].endValue = this.end;
-             this.option.dataZoom[0].startValue = 0;
-        } else {
-             this.option.dataZoom[0].endValue =  this.option.dataZoom[0].endValue + 1;
-             this.option.dataZoom[0].startValue =  this.option.dataZoom[0].startValue + 1;
-        }
-        this.chart.setOption(this.option)
-    }, 2000);
-    },
-    stop(){
-      console.log(11)
-      // this.stopMove=true
-      clearInterval(this.timeOut)
-    },
-    goMove(){
-      console.log(333333)
-      //  this.stopMove=false
-       this.autoMove()
-    }
+    // autoMove(){
+    //   console.log(this.end,this.dataList.seriesData.length)
+    //      this.timeOut=setInterval(()=>{
+    //     // clearInterval(this.timeOut)
+    //     // 每次向后滚动一个，最后一个从头开始。
+    //     // if(this.stopMove){ return }
+    //     if (Number(this.option.dataZoom[0].endValue) === this.dataList.seriesData.length-1) {
+    //          this.option.dataZoom[0].endValue = this.end;
+    //          this.option.dataZoom[0].startValue = 0;
+    //     } else {
+    //          this.option.dataZoom[0].endValue =  this.option.dataZoom[0].endValue + 1;
+    //          this.option.dataZoom[0].startValue =  this.option.dataZoom[0].startValue + 1;
+    //     }
+    //     this.chart.setOption(this.option)
+    // }, 2000);
+    // },
+    // stop(){
+    //   console.log(11)
+    //   // this.stopMove=true
+    //   clearInterval(this.timeOut)
+    // },
+    // goMove(){
+    //   console.log(333333)
+    //   //  this.stopMove=false
+    //    this.autoMove()
+    // }
   }
 };
 </script>

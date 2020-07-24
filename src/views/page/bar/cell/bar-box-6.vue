@@ -2,7 +2,7 @@
  * @Descripttion: ''
  * @Author: lilong(lilong@hztianque.com)
  * @Date: 2020-07-09 15:50:20
- * @LastEditTime: 2020-07-10 00:04:50
+ * @LastEditTime: 2020-07-24 15:45:34
 --> 
 <template>
   <div class="charts-wrapper" ref="bar6" />

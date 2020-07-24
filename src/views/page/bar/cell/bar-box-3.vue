@@ -2,7 +2,7 @@
  * @Descripttion: ''
  * @Author: lilong(lilong@hztianque.com)
  * @Date: 2020-07-08 19:58:06
- * @LastEditTime: 2020-07-08 22:12:05
+ * @LastEditTime: 2020-07-14 20:03:36
 --> 
 <template>
   <div class='chart-container' ref='bar3' />
@@ -138,6 +138,7 @@ export default {
           symbolRepeat: 'fixed',
           symbolMargin: '5%',
           symbolClip: true,
+          stack:20,
           symbolSize: 20,
           symbolBoundingData: data.max,
           data: data.seriesData,
